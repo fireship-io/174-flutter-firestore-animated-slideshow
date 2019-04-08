@@ -131,8 +131,19 @@ class FirestoreSlideshowState extends State<FirestoreSlideshow> {
         crossAxisAlignment: CrossAxisAlignment.start,
     
         children: [
-          Text('Your Stories', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),),
-          Text('FILTER', style: TextStyle( color: Colors.black26 )),
+          Text('Your Stories', style: TextStyle(fontSize: 40,inherit: false, fontWeight: FontWeight.bold),),
+           SizedBox(
+          height: 25,
+        ),
+        Container(
+          color: Colors.grey[300],
+          height: 2,
+          width: 100,
+        ),
+        SizedBox(
+          height: 25,
+        ),
+          Text('FILTER STORIES', style: TextStyle( color: Colors.black26, inherit: false, )),
           _buildButton('favorites'),
           _buildButton('happy'),
           _buildButton('sad')
@@ -143,7 +154,11 @@ class FirestoreSlideshowState extends State<FirestoreSlideshow> {
 
   _buildButton(tag) {
     Color color = tag == activeTag ? Colors.purple : Colors.white;
-    return FlatButton(color: color, child: Text('#$tag'), onPressed: () => _queryDb(tag: tag));
+    return RaisedButton(color: color, child: Text('#$tag'), onPressed: () => _queryDb(tag: tag),
+                       elevation: tag == activeTag ? 5 : 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25),
+        ),);
   }
   
 }
